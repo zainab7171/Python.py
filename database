@@ -1,0 +1,33 @@
+from sqlmodel import SQLModel, Field , create_engine
+
+class student(SQLModel, table=True):
+    id: int | None = Field(default=None, primary_key=True)
+    name: str
+    age: int
+engine = create_engine("sqlite:///database.db")
+SQLModel.metadata.create_all(engine)
+
+from sqlmodel import Session
+
+student1 = (student(name="ahmed", age=78))
+student2 = (student(name="rohan", age=60))
+student3 = (student(name="muntaha", age=42))
+student4 = (student(name="iyla", age=58))
+student5 = (student(name="sara", age=54))
+student6 = (student(name="zara", age=67))
+student7 = (student(name="tanya", age=66))
+student8 = (student(name="orhan", age=79))
+student9 = (student(name="fatima", age=40))
+student10 = (student(name="alisha", age=71))
+with Session(engine) as session:
+    session.add(student1)
+    session.add(student2)
+    session.add(student3)
+    session.add(student4)
+    session.add(student5)
+    session.add(student6)
+    session.add(student7)
+    session.add(student8)
+    session.add(student9)
+    session.add(student10)
+    session.commit()
