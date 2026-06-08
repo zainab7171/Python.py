@@ -1,0 +1,17 @@
+from fastapi import FastAPI
+
+app = FastAPI()
+# Home route
+@app.get("/")
+def read_root():
+    return {"message": "Hello, FastAPI!"}
+
+# Path parameter example
+@app.get("/items/{item_id}")
+def read_item(item_id: int):
+    return {"item_id": item_id}
+
+# Query parameter example
+@app.get("/search/")
+def search_item(q: str = None):
+    return {"query": q}
